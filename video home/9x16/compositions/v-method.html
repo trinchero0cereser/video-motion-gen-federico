@@ -1,0 +1,131 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #vme-stage {
+      --d: 0px;
+      position: absolute;
+      inset: 0;
+      background: #000000;
+      clip-path: polygon(
+        calc(434px - var(--d)) -20px,
+        calc(434px - var(--d)) calc(749px + var(--d)),
+        calc(646px - var(--d)) calc(749px + var(--d)),
+        calc(646px - var(--d)) 1940px,
+        calc(646px + var(--d)) 1940px,
+        calc(646px + var(--d)) calc(749px - var(--d)),
+        calc(434px + var(--d)) calc(749px - var(--d)),
+        calc(434px + var(--d)) -20px
+      );
+    }
+    .vme-group {
+      position: absolute;
+      inset: 0;
+      perspective: 2000px;
+    }
+    .vme-win {
+      position: absolute;
+      left: 60px;
+      top: 190px;
+      width: 960px;
+      height: 1040px;
+      border: 1px solid #2b2a28;
+      overflow: hidden;
+      background: #000000;
+    }
+    .vme-cam {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2880px;
+      height: 1800px;
+      transform-origin: 0 0;
+    }
+    .vme-cam img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    #vme-phones {
+      position: absolute;
+      left: 60px;
+      top: 210px;
+      width: 960px;
+      height: 974px;
+      transform-style: preserve-3d;
+    }
+    .vme-phone {
+      position: absolute;
+      top: 0;
+      width: 450px;
+      height: 974px;
+      border: 1px solid #2b2a28;
+      overflow: hidden;
+      background: #000000;
+    }
+    .vme-phone img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .vme-line {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+  </style>
+  <div data-hf-id="hf-fham" id="root" data-composition-id="vmethod" data-width="1080" data-height="1920">
+    <div data-hf-id="hf-l9yq" id="vme-stage">
+      <!-- 0–3.0 · metodo (07): i quattro step coi timecode rossi -->
+      <div data-hf-id="hf-b0hy" id="vme-g1" class="vme-group clip" data-start="0" data-duration="3">
+        <div data-hf-id="hf-q20d" id="vme-win1" class="vme-win">
+          <div data-hf-id="hf-wupz" id="vme-cam1" class="vme-cam"><img data-hf-id="hf-uhqd" src="assets/shots/07-metodo.png" alt="Vellum method" /></div>
+        </div>
+      </div>
+      <!-- 2.85–5.5 · domande (08) -->
+      <div data-hf-id="hf-yvfa" id="vme-g2" class="vme-group clip" data-start="2.85" data-duration="2.65">
+        <div data-hf-id="hf-u04e" id="vme-win2" class="vme-win">
+          <div data-hf-id="hf-o6u4" id="vme-cam2" class="vme-cam"><img data-hf-id="hf-03r4" src="assets/shots/08-domande.png" alt="Vellum questions" /></div>
+        </div>
+      </div>
+      <!-- 5.5–8.6 · il sito su telefono (10, 11) -->
+      <div data-hf-id="hf-ym6h" id="vme-g3" class="vme-group clip" data-start="5.5" data-duration="3.7">
+        <div data-hf-id="hf-v1yv" id="vme-phones">
+          <div data-hf-id="hf-93qi" id="vme-ph1" class="vme-phone" style="left: 0"><img data-hf-id="hf-8p9g" src="assets/shots/10-telefono-home.png" alt="Vellum home on phone" /></div>
+          <div data-hf-id="hf-nu1j" id="vme-ph2" class="vme-phone" style="left: 510px"><img data-hf-id="hf-jlgo" src="assets/shots/11-telefono-progetti.png" alt="Vellum project on phone" /></div>
+        </div>
+      </div>
+    </div>
+    <svg data-hf-id="hf-pd43" class="vme-line" viewBox="0 0 1080 1920" data-layout-ignore>
+      <path data-hf-id="hf-bzlf" id="vme-cut" d="M434 -20 V749 H646 V1940" fill="none" stroke="#F23D3D" stroke-width="9" pathLength="100" stroke-dasharray="100 120" />
+    </svg>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // 0.0–0.35 · il taglio rosso si disegna; 0.5–1.1 la fessura si apre sul metodo
+    tl.fromTo("#vme-cut", { strokeDashoffset: 100, opacity: 1 }, { strokeDashoffset: 0, duration: 0.35, ease: "power2.inOut" }, 0);
+    tl.fromTo("#vme-stage", { "--d": "0px" }, { "--d": "1250px", duration: 0.6, ease: "power3.inOut" }, 0.5);
+    tl.to("#vme-cut", { opacity: 0, duration: 0.2, ease: "power2.out" }, 0.5);
+    tl.fromTo("#vme-cam1", { x: -42, y: -168, scale: 0.7 }, { x: -42, y: -168, scale: 0.7, duration: 0.01 }, 0);
+    tl.fromTo("#vme-win1", { scale: 1.04 }, { scale: 1, duration: 1.0, ease: "power2.out" }, 0.7);
+    // 1.5–1.95 · zoom sul primo step; 1.95–2.85 pan fino all'ultimo
+    tl.fromTo("#vme-cam1", { x: -42, y: -168, scale: 0.7 }, { x: -54, y: -522, scale: 0.9, immediateRender: false, duration: 0.45, ease: "power3.inOut" }, 1.5);
+    tl.fromTo("#vme-cam1", { x: -54 }, { x: -1632, duration: 0.9, ease: "power2.inOut", immediateRender: false }, 1.95);
+    // 2.85–3.0 · cambio sfocato sulle domande
+    tl.fromTo("#vme-win1", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.15, ease: "power2.in", immediateRender: false }, 2.85);
+    tl.fromTo("#vme-win2", { opacity: 0, filter: "blur(8px)", scale: 1.03 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.18, ease: "power2.out" }, 3.0);
+    // 3.5–3.9 · zoom sulla prima domanda (in rosso); 4.0–5.3 pan verso il basso
+    tl.fromTo("#vme-cam2", { x: -42, y: -168, scale: 0.7 }, { x: -60, y: -560, scale: 1.0, duration: 0.4, ease: "power3.inOut" }, 3.5);
+    tl.fromTo("#vme-cam2", { y: -560 }, { y: -760, duration: 1.3, ease: "power2.inOut", immediateRender: false }, 4.0);
+    // 5.5 · stacco sul beat: i due telefoni arrivano dalla profondità, uno dopo l'altro
+    tl.fromTo("#vme-ph1", { z: -700, opacity: 0 }, { z: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, 5.5);
+    tl.fromTo("#vme-ph2", { z: -700, opacity: 0 }, { z: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, 6.0);
+    // 6.6–8.6 · la camera gira piano attorno ai due schermi
+    tl.fromTo("#vme-phones", { rotationY: -6 }, { rotationY: 4, duration: 2.0, ease: "power2.inOut" }, 6.6);
+    window.__timelines["vmethod"] = tl;
+  </script>
+</template>
