@@ -1,0 +1,27 @@
+{
+  "name": "video-motion-gen-federico",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trinchero0cereser/video-motion-gen-federico.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trinchero0cereser/video-motion-gen-federico/issues"
+  },
+  "homepage": "https://github.com/trinchero0cereser/video-motion-gen-federico#readme",
+  "dependencies": {
+    "@remotion/cli": "^4.0.540",
+    "hyperframes": "^0.9.10",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.540"
+  }
+}
