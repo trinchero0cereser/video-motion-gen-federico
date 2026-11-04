@@ -1,0 +1,176 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Geist";
+      src: url("assets/fonts/geist-variable.woff2") format("woff2");
+      font-weight: 100 900;
+    }
+    @font-face {
+      font-family: "Geist Mono";
+      src: url("assets/fonts/geist-mono-variable.woff2") format("woff2");
+      font-weight: 100 900;
+    }
+    @font-face {
+      font-family: "Silkscreen";
+      src: url("assets/fonts/silkscreen-400.woff2") format("woff2");
+      font-weight: 400;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .vpj-stage {
+      --d: 0px;
+      position: absolute;
+      inset: 0;
+      background: #000000;
+      clip-path: polygon(
+        calc(434px - var(--d)) -20px,
+        calc(434px - var(--d)) calc(749px + var(--d)),
+        calc(646px - var(--d)) calc(749px + var(--d)),
+        calc(646px - var(--d)) 1940px,
+        calc(646px + var(--d)) 1940px,
+        calc(646px + var(--d)) calc(749px - var(--d)),
+        calc(434px + var(--d)) calc(749px - var(--d)),
+        calc(434px + var(--d)) -20px
+      );
+    }
+    .vpj-persp {
+      position: absolute;
+      inset: 0;
+      perspective: 2000px;
+    }
+    .vpj-win {
+      position: absolute;
+      border: 1px solid #2b2a28;
+      overflow: hidden;
+      background: #000000;
+    }
+    .vpj-cam {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform-origin: 0 0;
+    }
+    .vpj-cam img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    #vpj-win {
+      left: 60px;
+      top: 230px;
+      width: 960px;
+      height: 704px;
+    }
+    #vpj-cam {
+      width: 960px;
+      height: 704px;
+    }
+    #vpj-marq {
+      position: absolute;
+      left: 0;
+      top: 530px;
+      white-space: nowrap;
+      font-family: "Silkscreen", monospace;
+      font-size: 150px;
+      line-height: 150px;
+      letter-spacing: 0.06em;
+      color: #f5f5f2;
+    }
+    #vpj-desc {
+      position: absolute;
+      left: 60px;
+      width: 900px;
+      top: 990px;
+      font-family: "Geist", sans-serif;
+      font-size: 44px;
+      line-height: 54px;
+      color: #f5f5f2;
+    }
+    #vpj-tags {
+      position: absolute;
+      left: 60px;
+      top: 1140px;
+      display: flex;
+      gap: 12px;
+    }
+    .vpj-tag {
+      font-family: "Geist Mono", monospace;
+      font-size: 28px;
+      line-height: 28px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #f5f5f2;
+      padding: 13px 14px 11px;
+      border: 1px solid #2b2a28;
+    }
+    .vpj-tag.sig {
+      color: #f23d3d;
+      border-color: #f23d3d;
+    }
+    #vsv-win {
+      left: 60px;
+      top: 190px;
+      width: 960px;
+      height: 1040px;
+    }
+    #vsv-cam {
+      width: 2880px;
+      height: 1800px;
+    }
+    .vpj-line {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+  </style>
+  <div data-hf-id="hf-b5zh" id="root" data-composition-id="vprojects" data-width="1080" data-height="1920">
+    <div data-hf-id="hf-cz04" id="vpj-stage" class="vpj-stage">
+      <div data-hf-id="hf-949v" class="vpj-persp">
+        <div data-hf-id="hf-qbsg" id="vpj-win" class="vpj-win">
+          <div data-hf-id="hf-k082" id="vpj-cam" class="vpj-cam"><img data-hf-id="hf-4d7o" src="assets/shots/05-progetti-top-v.png" alt="Vellum project: Marea Bassa" /></div>
+          <div data-hf-id="hf-g1yn" id="vpj-marq" data-layout-allow-overflow>MAREA · BASSA &nbsp;&nbsp; MAREA · BASSA &nbsp;&nbsp; MAREA · BASSA</div>
+        </div>
+      </div>
+      <div data-hf-id="hf-oew7" id="vpj-desc">Travel documentary for an outdoor channel</div>
+      <div data-hf-id="hf-v4tj" id="vpj-tags">
+        <span data-hf-id="hf-rigw" class="vpj-tag sig">Sample project</span>
+        <span data-hf-id="hf-vna7" class="vpj-tag">Long-form</span>
+        <span data-hf-id="hf-3zdu" class="vpj-tag">Storytelling</span>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-2gux" id="vsv-stage" class="vpj-stage">
+      <div data-hf-id="hf-5gbn" class="vpj-persp">
+        <div data-hf-id="hf-ef75" id="vsv-win" class="vpj-win">
+          <div data-hf-id="hf-tour" id="vsv-cam" class="vpj-cam"><img data-hf-id="hf-gbr3" src="assets/shots/06-servizi.png" alt="Vellum services" /></div>
+        </div>
+      </div>
+    </div>
+
+    <svg data-hf-id="hf-ifev" class="vpj-line" viewBox="0 0 1080 1920" data-layout-ignore>
+      <path data-hf-id="hf-dsnb" id="vpj-cut" d="M434 -20 V749 H646 V1940" fill="none" stroke="#F23D3D" stroke-width="9" pathLength="100" stroke-dasharray="100 120" />
+    </svg>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#vpj-stage", { "--d": "0px" }, { "--d": "1250px", duration: 0.8, ease: "power3.inOut" }, 0);
+    tl.fromTo("#vpj-win", { rotationX: 6, scale: 1.05 }, { rotationX: 0, scale: 1, duration: 1.8, ease: "power2.out" }, 0.8);
+    tl.fromTo("#vpj-marq", { x: 200 }, { x: -1500, duration: 4.4, ease: "sine.inOut" }, 0.6);
+    tl.fromTo("#vpj-desc", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 2.6);
+    tl.fromTo(".vpj-tag", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, stagger: 0.067, ease: "power2.out" }, 2.9);
+
+    tl.fromTo("#vpj-cut", { strokeDashoffset: 100, opacity: 1 }, { strokeDashoffset: 0, duration: 0.35, ease: "power2.inOut" }, 5.5);
+    tl.fromTo("#vsv-stage", { "--d": "0px" }, { "--d": "1250px", duration: 0.6, ease: "power3.inOut" }, 6.0);
+    tl.to("#vpj-cut", { opacity: 0, duration: 0.2, ease: "power2.out" }, 6.0);
+    // servizi: prima il titolo e le righe, poi zoom sulle righe e pan in basso
+    tl.fromTo("#vsv-cam", { x: -37, y: -155, scale: 0.62 }, { x: -37, y: -155, scale: 0.62, duration: 0.01 }, 0);
+    tl.fromTo("#vsv-win", { rotationY: 5 }, { rotationY: 0, duration: 1.3, ease: "power2.out" }, 6.3);
+    tl.fromTo("#vsv-cam", { x: -37, y: -155, scale: 0.62 }, { x: -53, y: -500, scale: 0.88, duration: 0.6, ease: "power3.inOut", immediateRender: false }, 8.0);
+    tl.fromTo("#vsv-cam", { y: -500 }, { y: -544, duration: 2.0, ease: "power2.inOut", immediateRender: false }, 8.6);
+    window.__timelines["vprojects"] = tl;
+  </script>
+</template>

@@ -1,0 +1,14 @@
+{
+  "name": "video-home",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.9.10 preview",
+    "check": "npx --yes hyperframes@0.9.10 check",
+    "render": "npx --yes hyperframes@0.9.10 render",
+    "publish": "npx --yes hyperframes@0.9.10 publish",
+    "dev:9x16": "cd 9x16 && npx --yes hyperframes@0.9.10 preview",
+    "render:16x9": "npx --yes hyperframes@0.9.10 render --quality delivery -o render/vellum-showcase-16x9.mp4",
+    "render:9x16": "cd 9x16 && npx --yes hyperframes@0.9.10 render --quality delivery -o ../render/vellum-showcase-9x16.mp4"
+  }
+}

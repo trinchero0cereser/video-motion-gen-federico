@@ -1,0 +1,89 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Geist Mono";
+      src: url("assets/fonts/geist-mono-variable.woff2") format("woff2");
+      font-weight: 100 900;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    #br-wrap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 978px;
+      height: 102px;
+      background: #000000;
+    }
+    #br-rule {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 1px;
+      background: #2b2a28;
+      transform-origin: 0 0;
+    }
+    .br-txt {
+      position: absolute;
+      top: 18px;
+      font-family: "Geist Mono", monospace;
+      font-size: 22px;
+      line-height: 28px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #f5f5f2;
+      white-space: nowrap;
+    }
+    .br-sec {
+      left: 96px;
+    }
+    .br-sec i {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0 14px 3px 0;
+      background: #f23d3d;
+    }
+    #br-tc {
+      right: 96px;
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+  <div data-hf-id="hf-5q5w" id="root" data-composition-id="bar" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-9iau" id="br-wrap">
+      <div data-hf-id="hf-l86o" id="br-rule"></div>
+      <!-- etichetta di sezione: cambia sul taglio (secondi locali; la barra parte a 4 s) -->
+      <div data-hf-id="hf-fyix" id="br-s1" class="br-txt br-sec clip" data-start="0" data-duration="5">Available for new channels.</div>
+      <div data-hf-id="hf-3cgi" id="br-s2" class="br-txt br-sec clip" data-start="5" data-duration="6"><i data-hf-id="hf-wt6k"></i>Projects</div>
+      <div data-hf-id="hf-khhv" id="br-s3" class="br-txt br-sec clip" data-start="11" data-duration="5"><i data-hf-id="hf-zeb8"></i>Services</div>
+      <div data-hf-id="hf-t3ns" id="br-s4" class="br-txt br-sec clip" data-start="16" data-duration="2.5"><i data-hf-id="hf-y7e5"></i>Method</div>
+      <div data-hf-id="hf-07zo" id="br-s5" class="br-txt br-sec clip" data-start="18.5" data-duration="2.5"><i data-hf-id="hf-ylp6"></i>Questions</div>
+      <div data-hf-id="hf-cvoq" id="br-s6" class="br-txt br-sec clip" data-start="21" data-duration="3">Vellum Studio</div>
+      <div data-hf-id="hf-xhvf" id="br-s7" class="br-txt br-sec clip" data-start="24" data-duration="7"><i data-hf-id="hf-0l8b"></i>Quote</div>
+      <div data-hf-id="hf-b21y" id="br-s8" class="br-txt br-sec clip" data-start="31" data-duration="5">Available for new channels.</div>
+      <div data-hf-id="hf-scfa" id="br-tc" class="br-txt">TC 00:00:04:00</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const OFFSET = 4; // la barra entra a 4 s del film: il timecode mostra il tempo del film
+    const tc = document.getElementById("br-tc");
+    const pad = (n) => String(n).padStart(2, "0");
+    function paint() {
+      const f = Math.round((tl.time() + OFFSET) * 30);
+      const s = Math.floor(f / 30);
+      tc.textContent = "TC 00:00:" + pad(s) + ":" + pad(f % 30);
+    }
+    // la linea si traccia da sinistra quando la barra arriva
+    tl.fromTo("#br-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 0);
+    tl.fromTo(".br-txt", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 0.3);
+    tl.to({}, { duration: 36 }, 0);
+    tl.eventCallback("onUpdate", paint);
+    paint();
+    window.__timelines["bar"] = tl;
+  </script>
+</template>

@@ -1,0 +1,78 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      background: #000000;
+      overflow: hidden;
+    }
+    #vlg-mark {
+      position: absolute;
+      left: 260px;
+      top: 469px;
+      width: 560px;
+      height: 560px;
+      perspective: 1400px;
+    }
+    #vlg-mark .half {
+      position: absolute;
+      inset: 0;
+    }
+    #vlg-mark svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+    #vlg-cut {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+  </style>
+  <div data-hf-id="hf-9dd4" id="root" data-composition-id="vlogo" data-width="1080" data-height="1920">
+    <div data-hf-id="hf-bf50" id="vlg-mark">
+      <div data-hf-id="hf-pshi" id="vlg-l1" class="half">
+        <svg data-hf-id="hf-fohl" viewBox="0 0 100 100"><path data-hf-id="hf-4rp2" fill="#F5F5F2" fill-rule="evenodd" d="M0 0L24.5 0L24.5 56.5L62.5 56.5L62.5 100L0 100Z" /></svg>
+      </div>
+      <div data-hf-id="hf-jmrp" id="vlg-l2" class="half">
+        <svg data-hf-id="hf-c1ot" viewBox="0 0 100 100"><path data-hf-id="hf-s794" fill="#F5F5F2" fill-rule="evenodd" d="M37.5 0L100 0L100 100L75.5 100L75.5 43.5L37.5 43.5Z" /></svg>
+      </div>
+    </div>
+    <!-- il taglio rosso: (31,-6) → (31,50) → (69,50) → (69,106) nel marchio da 560 px -->
+    <svg data-hf-id="hf-vzej" id="vlg-cut" viewBox="0 0 1080 1920" data-layout-ignore>
+      <path data-hf-id="hf-22zb"
+        id="vlg-cutpath"
+        d="M433.6 435.4 V749 H646.4 V1062.6"
+        fill="none"
+        stroke="#F23D3D"
+        stroke-width="13.44"
+        stroke-linecap="butt"
+        stroke-linejoin="miter"
+        pathLength="100"
+        stroke-dasharray="100 120"
+      />
+    </svg>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // 0.0–1.0 · il taglio rosso si disegna (frame 0 ne mostra già la punta)
+    tl.fromTo("#vlg-cutpath", { strokeDashoffset: 86 }, { strokeDashoffset: 0, duration: 1.0, ease: "power2.inOut" }, 0);
+    // 1.0–1.9 · le due L arrivano dalla profondità, ancora aperte
+    tl.fromTo("#vlg-l1", { z: -1800, x: -160, opacity: 0 }, { z: 0, x: -160, opacity: 1, duration: 0.9, ease: "expo.out" }, 1.0);
+    tl.fromTo("#vlg-l2", { z: -1800, x: 160, opacity: 0 }, { z: 0, x: 160, opacity: 1, duration: 0.9, ease: "expo.out" }, 1.0);
+    // 1.9–2.6 · si chiudono sul taglio con una piccola molla
+    tl.fromTo("#vlg-l1", { x: -160 }, { x: 0, duration: 0.7, ease: "back.out(1.5)", immediateRender: false }, 1.9);
+    tl.fromTo("#vlg-l2", { x: 160 }, { x: 0, duration: 0.7, ease: "back.out(1.5)", immediateRender: false }, 1.9);
+    // 3.0–3.4 · il taglio si allunga fino ai bordi: diventa la transizione
+    tl.fromTo(
+      "#vlg-cutpath",
+      { attr: { d: "M433.6 435.4 V749 H646.4 V1062.6" } },
+      { attr: { d: "M433.6 -20 V749 H646.4 V1940" }, duration: 0.4, ease: "power3.inOut", immediateRender: false },
+      3.0,
+    );
+    window.__timelines["vlogo"] = tl;
+  </script>
+</template>

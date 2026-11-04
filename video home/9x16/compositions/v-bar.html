@@ -1,0 +1,89 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Geist Mono";
+      src: url("assets/fonts/geist-mono-variable.woff2") format("woff2");
+      font-weight: 100 900;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    #vbr-wrap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1262px;
+      height: 658px;
+      background: #000000;
+    }
+    #vbr-rule {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 1px;
+      background: #2b2a28;
+      transform-origin: 0 0;
+    }
+    .vbr-txt {
+      position: absolute;
+      top: 26px;
+      font-family: "Geist Mono", monospace;
+      font-size: 28px;
+      line-height: 34px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #f5f5f2;
+      white-space: nowrap;
+    }
+    .vbr-sec {
+      left: 60px;
+    }
+    .vbr-sec i {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 0 14px 3px 0;
+      background: #f23d3d;
+    }
+    #vbr-tc {
+      right: 60px;
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+  <div data-hf-id="hf-vys0" id="root" data-composition-id="vbar" data-width="1080" data-height="1920">
+    <div data-hf-id="hf-jeju" id="vbr-wrap">
+      <div data-hf-id="hf-tn50" id="vbr-rule"></div>
+      <!-- etichetta di sezione: cambia sul taglio (secondi locali; la barra parte a 4 s) -->
+      <div data-hf-id="hf-ygz1" id="vbr-s1" class="vbr-txt vbr-sec clip" data-start="0" data-duration="5">Available for new channels.</div>
+      <div data-hf-id="hf-897e" id="vbr-s2" class="vbr-txt vbr-sec clip" data-start="5" data-duration="6"><i data-hf-id="hf-wt6k"></i>Projects</div>
+      <div data-hf-id="hf-hyd7" id="vbr-s3" class="vbr-txt vbr-sec clip" data-start="11" data-duration="5"><i data-hf-id="hf-zeb8"></i>Services</div>
+      <div data-hf-id="hf-ylr2" id="vbr-s4" class="vbr-txt vbr-sec clip" data-start="16" data-duration="2.5"><i data-hf-id="hf-y7e5"></i>Method</div>
+      <div data-hf-id="hf-r6w0" id="vbr-s5" class="vbr-txt vbr-sec clip" data-start="18.5" data-duration="2.5"><i data-hf-id="hf-ylp6"></i>Questions</div>
+      <div data-hf-id="hf-2w0c" id="vbr-s6" class="vbr-txt vbr-sec clip" data-start="21" data-duration="3">Vellum Studio</div>
+      <div data-hf-id="hf-1w03" id="vbr-s7" class="vbr-txt vbr-sec clip" data-start="24" data-duration="7"><i data-hf-id="hf-0l8b"></i>Quote</div>
+      <div data-hf-id="hf-3b2i" id="vbr-s8" class="vbr-txt vbr-sec clip" data-start="31" data-duration="5">Available for new channels.</div>
+      <div data-hf-id="hf-ku88" id="vbr-tc" class="vbr-txt">TC 00:00:04:00</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const OFFSET = 4; // la barra entra a 4 s del film: il timecode mostra il tempo del film
+    const tc = document.getElementById("vbr-tc");
+    const pad = (n) => String(n).padStart(2, "0");
+    function paint() {
+      const f = Math.round((tl.time() + OFFSET) * 30);
+      const s = Math.floor(f / 30);
+      tc.textContent = "TC 00:00:" + pad(s) + ":" + pad(f % 30);
+    }
+    // la linea si traccia da sinistra quando la barra arriva
+    tl.fromTo("#vbr-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 0);
+    tl.fromTo(".vbr-txt", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 0.3);
+    tl.to({}, { duration: 36 }, 0);
+    tl.eventCallback("onUpdate", paint);
+    paint();
+    window.__timelines["vbar"] = tl;
+  </script>
+</template>

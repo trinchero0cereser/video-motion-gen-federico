@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Vellum Studio — showcase 9:16</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000000;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        background: #000000;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-4ymg"
+      id="root"
+      data-composition-id="vmain"
+      data-start="0"
+      data-duration="40"
+      data-fps="30"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- 0–4 s · ingresso del logo -->
+      <div data-hf-id="hf-q5si"
+        id="vlogo"
+        data-composition-id="vlogo"
+        data-composition-src="compositions/v-logo.html"
+        data-start="0"
+        data-duration="4.1"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 1"
+      ></div>
+      <!-- 3.5–9.8 s · titolo, home 03, le L si aprono -->
+      <div data-hf-id="hf-ph0d"
+        id="vopen"
+        data-composition-id="vopen"
+        data-composition-src="compositions/v-open.html"
+        data-start="3.5"
+        data-duration="6.3"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 2"
+      ></div>
+      <!-- 9–20 s · progetti (05) e servizi (06) -->
+      <div data-hf-id="hf-jodg"
+        id="vprojects"
+        data-composition-id="vprojects"
+        data-composition-src="compositions/v-projects.html"
+        data-start="9"
+        data-duration="11.7"
+        data-track-index="3"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 3"
+      ></div>
+      <!-- 19.5–28 s · metodo (07), domande (08), telefono (10, 11) -->
+      <div data-hf-id="hf-tndh"
+        id="vmethod"
+        data-composition-id="vmethod"
+        data-composition-src="compositions/v-method.html"
+        data-start="19.5"
+        data-duration="9.2"
+        data-track-index="4"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 4"
+      ></div>
+      <!-- 27.5–35 s · preventivo (09) -->
+      <div data-hf-id="hf-xido"
+        id="vquote"
+        data-composition-id="vquote"
+        data-composition-src="compositions/v-quote.html"
+        data-start="27.5"
+        data-duration="8.2"
+        data-track-index="5"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 5"
+      ></div>
+      <!-- 34.5–40 s · chiusura -->
+      <div data-hf-id="hf-4brp"
+        id="voutro"
+        data-composition-id="voutro"
+        data-composition-src="compositions/v-outro.html"
+        data-start="34.5"
+        data-duration="5.5"
+        data-track-index="6"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 6"
+      ></div>
+      <!-- 4–40 s · barra con il timecode -->
+      <div data-hf-id="hf-dbpq"
+        id="vbar"
+        data-composition-id="vbar"
+        data-composition-src="compositions/v-bar.html"
+        data-start="4"
+        data-duration="36"
+        data-track-index="7"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 10"
+      ></div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["vmain"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

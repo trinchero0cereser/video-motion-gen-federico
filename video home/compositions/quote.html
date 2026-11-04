@@ -1,0 +1,124 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #qt-stage {
+      --d: 0px;
+      position: absolute;
+      inset: 0;
+      background: #000000;
+      perspective: 2000px;
+      clip-path: polygon(
+        calc(861px - var(--d)) -20px,
+        calc(861px - var(--d)) calc(540px + var(--d)),
+        calc(1059px - var(--d)) calc(540px + var(--d)),
+        calc(1059px - var(--d)) 1100px,
+        calc(1059px + var(--d)) 1100px,
+        calc(1059px + var(--d)) calc(540px - var(--d)),
+        calc(861px + var(--d)) calc(540px - var(--d)),
+        calc(861px + var(--d)) -20px
+      );
+    }
+    #qt-win {
+      position: absolute;
+      left: 240px;
+      top: 60px;
+      width: 1440px;
+      height: 900px;
+      border: 1px solid #2b2a28;
+      overflow: hidden;
+      background: #000000;
+    }
+    #qt-cam {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1440px;
+      height: 900px;
+      transform-origin: 0 0;
+    }
+    #qt-cam > img {
+      display: block;
+      width: 1440px;
+      height: 900px;
+    }
+    /* la finestra pixel del sito: al posto del video segnaposto, la nostra ripresa */
+    #qt-reel {
+      position: absolute;
+      left: 570px;
+      top: 368.5px;
+      width: 300px;
+      height: 327.5px;
+      overflow: hidden;
+      background: #000000;
+    }
+    #qt-reel img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 582px;
+      height: 327.5px;
+      max-width: none;
+    }
+    #qt-reel i {
+      position: absolute;
+      width: 30.5px;
+      height: 30.2px;
+      background: #000000;
+    }
+    .qt-line {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+    }
+  </style>
+  <div data-hf-id="hf-16hd" id="root" data-composition-id="quote" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-eqi7" id="qt-stage">
+      <div data-hf-id="hf-ay43" id="qt-win">
+        <div data-hf-id="hf-xwf0" id="qt-cam">
+          <img data-hf-id="hf-vap1" src="assets/shots/09-preventivo.png" alt="Vellum quote section" />
+          <div data-hf-id="hf-fsmg" id="qt-reel" data-layout-ignore>
+            <img data-hf-id="hf-j3g1" id="qt-reel-img" src="assets/shots/05-progetti-sea.png" alt="" />
+            <i data-hf-id="hf-abdl" style="left: 30px; top: 0px"></i>
+            <i data-hf-id="hf-4dlq" style="left: 150px; top: 0px"></i>
+            <i data-hf-id="hf-sudx" style="left: 210px; top: 0px"></i>
+            <i data-hf-id="hf-1dcq" style="left: 240px; top: 0px"></i>
+            <i data-hf-id="hf-42q7" style="left: 270px; top: 0px"></i>
+            <i data-hf-id="hf-jfyu" style="left: 0px; top: 59.55px"></i>
+            <i data-hf-id="hf-mv9y" style="left: 0px; top: 89.32px"></i>
+            <i data-hf-id="hf-ai8v" style="left: 270px; top: 119.09px"></i>
+            <i data-hf-id="hf-rono" style="left: 0px; top: 178.64px"></i>
+            <i data-hf-id="hf-yqso" style="left: 0px; top: 238.18px"></i>
+            <i data-hf-id="hf-hqpp" style="left: 270px; top: 238.18px"></i>
+            <i data-hf-id="hf-rgll" style="left: 30px; top: 297.73px"></i>
+            <i data-hf-id="hf-9pa7" style="left: 90px; top: 297.73px"></i>
+            <i data-hf-id="hf-1cd1" style="left: 210px; top: 297.73px"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <svg data-hf-id="hf-9bli" class="qt-line" viewBox="0 0 1920 1080" data-layout-ignore>
+      <path data-hf-id="hf-pbtl" id="qt-cut" d="M861 -20 V540 H1059 V1100" fill="none" stroke="#F23D3D" stroke-width="8" pathLength="100" stroke-dasharray="100 120" />
+    </svg>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // 0.0–0.35 · il taglio rosso; 0.5–1.1 la fessura apre il preventivo
+    tl.fromTo("#qt-cut", { strokeDashoffset: 100, opacity: 1 }, { strokeDashoffset: 0, duration: 0.35, ease: "power2.inOut" }, 0);
+    tl.fromTo("#qt-stage", { "--d": "0px" }, { "--d": "1200px", duration: 0.6, ease: "power3.inOut" }, 0.5);
+    tl.to("#qt-cut", { opacity: 0, duration: 0.2, ease: "power2.out" }, 0.5);
+    // la nostra ripresa scorre dentro la finestra pixel per tutta la scena
+    tl.fromTo("#qt-reel-img", { x: 0 }, { x: -282, duration: 6.8, ease: "sine.inOut" }, 0.8);
+    // 1.1–3.3 · spinta lenta verso la finestra pixel
+    tl.fromTo("#qt-cam", { x: 0, y: 0, scale: 1 }, { x: -216, y: -243, scale: 1.3, duration: 2.2, ease: "power2.inOut" }, 1.1);
+    // 3.5–3.95 · dettaglio "TUO ▣ NALE"
+    tl.fromTo("#qt-cam", { x: -216, y: -243, scale: 1.3 }, { x: -990, y: -586, scale: 1.9, duration: 0.45, ease: "power3.inOut", immediateRender: false }, 3.5);
+    // 5.0–5.6 · scende sui bottoni
+    tl.fromTo("#qt-cam", { x: -990, y: -586 }, { x: -648, y: -810, duration: 0.6, ease: "power3.inOut", immediateRender: false }, 5.0);
+    window.__timelines["quote"] = tl;
+  </script>
+</template>
